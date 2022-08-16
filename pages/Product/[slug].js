@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -19,18 +19,47 @@ const ProductScreen = () => {
             </div>
             <div className="grid md:grid-cols-4 md:gap-3">
                 <div className="md:col-span-2">
-                    <Image
+                    <img
+                        src={product.image}
+                        alt={product.phone_name}
+                        height={500}
+                        width={500}
+                        layout='responsive' />
+                    {/* <Image
                         src={product.image}
                         alt={product.phone_name}
                         height={640}
                         width={640}
-                        layput='responsive'
-                    ></Image>
+                        layout='responsive'
+                    ></Image> */}
                 </div>
                 <div>
                     <ul>
                         <li><h1 className='text-lg'>{product.phone_name}</h1></li>
+                        <li>Category: {product.brand}</li>
+                        <li>Brand: {product.slug}</li>
+                        <li>$ {product.price}</li>
+                        <li>{product.rating} of {product.numReviews} reviews</li>
+                        <li>Memory: {product.memory}</li>
+                        <li>Release Date: {product.releaseDate}</li>
+                        <li>Display Size: {product.displaySize}</li>
+                        <li>Storage: {product.storage}</li>
+                        <li>{product.chipSet}</li>
+                        <li>In Stock: {product.countInStock}</li>
                     </ul>
+                </div>
+                <div>
+                    <div className="card p-5">
+                        <div className="mb-2 flex justify-between">
+                            <div>Price</div>
+                            <div>$ {product.price}</div>
+                        </div>
+                        <div className="mb-2 flex justify-between">
+                            <div>Status</div>
+                            <div>$ {product.countInStock > 0 ?'In Stock': 'Unavailable'}</div>
+                        </div>
+                        <button className="primary-button w-full">Add to cart</button>
+                    </div>
                 </div>
             </div>
         </Layout>

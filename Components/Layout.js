@@ -10,7 +10,7 @@ const Layout = ({ title, children }) => {
             <Head>
                 <title>{title ? title + ' - Mobile Shop' : 'Mobile Shop'}</title>
                 <meta name="description" content="Ecommerce Website" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="https://thumbs.dreamstime.com/b/mobile-store-142992150.jpg" />
             </Head>
             <div className='flex min-h-screen flex-col justify-between'>
                 <header>
@@ -19,6 +19,8 @@ const Layout = ({ title, children }) => {
                             <a className='text-lg font-bold'>MOBILE SHOP</a>
                         </Link>
                         <div>
+                            <Link href='/'><a className='p-2'>Home</a></Link>
+                            <Link href='/about'><a className='p-2'>About</a></Link>
                             <Link href='/cart'><a className='p-2'>Cart</a></Link>
                             <Link href='/login'><a className='p-2'>Login</a></Link>
                         </div>
