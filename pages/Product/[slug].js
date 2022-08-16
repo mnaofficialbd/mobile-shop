@@ -16,7 +16,15 @@ const ProductScreen = () => {
     const { state, dispatch } = useContext(Store);
 
     const addToCartHandler = () => {
-        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } })
+        const existItem = state.cart.cartItems.find((x) => x.slug === slug);
+        const quantity = existItem ? existItem.quantity + 1 : 1;
+
+        if (product.countInStock < quantity) {
+            alert('Product stock is not available')
+            return;
+        }
+
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
     }
 
     return (
