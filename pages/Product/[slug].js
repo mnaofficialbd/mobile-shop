@@ -1,9 +1,10 @@
 // import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import Layout from '../../Components/Layout';
 import data from '../../utils/data';
+import { Store } from '../../utils/Store';
 
 const ProductScreen = () => {
     const { query } = useRouter();
@@ -12,6 +13,12 @@ const ProductScreen = () => {
     if (!product) {
         return <div>Product Not Found</div>
     }
+    const { state, dispatch } = useContext(Store);
+
+    const addToCartHandler = () => {
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } })
+    }
+
     return (
         <Layout title={product.phone_name}>
             <div className="py-2">
@@ -56,9 +63,9 @@ const ProductScreen = () => {
                         </div>
                         <div className="mb-2 flex justify-between">
                             <div>Status</div>
-                            <div>$ {product.countInStock > 0 ?'In Stock': 'Unavailable'}</div>
+                            <div>$ {product.countInStock > 0 ? 'In Stock' : 'Unavailable'}</div>
                         </div>
-                        <button className="primary-button w-full">Add to cart</button>
+                        <button className="primary-button w-full" onClick={addToCartHandler}>Add to cart</button>
                     </div>
                 </div>
             </div>
