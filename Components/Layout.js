@@ -6,7 +6,7 @@ import { Store } from '../utils/Store';
 const Layout = ({ title, children }) => {
     const today = new Date();
     const year = today.getFullYear();
-    const { state, dispatch } = useContext(Store);
+    const { state } = useContext(Store);
     const { cart } = state;
 
     return (
