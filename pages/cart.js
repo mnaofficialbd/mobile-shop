@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import Layout from '../Components/Layout';
 import { Store } from '../utils/Store';
+import { XCircleIcon } from '@heroicons/react/outline'
 
 const CartScreen = () => {
 
@@ -35,8 +36,19 @@ const CartScreen = () => {
                                             <tr key={item.slug} className="border-b">
                                                 <td>
                                                     <Link href={`/product/${item.slug}`}>
-                                                        
+                                                        <a className='flex items-center'>
+                                                            <img src={item.image} alt={item.phone_name} className='w-8' />
+                                                            &nbsp;
+                                                            {item.phone_name}
+                                                        </a>
                                                     </Link>
+                                                </td>
+                                                <td className="p-5 text-right">{item.quantity}</td>
+                                                <td className="p-5 text-right">$ {item.price}</td>
+                                                <td className="p-5 text-center">
+                                                    <button>
+                                                        <XCircleIcon className='h-8 w-8'></XCircleIcon>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}
