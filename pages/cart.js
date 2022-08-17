@@ -3,16 +3,18 @@ import React, { useContext } from 'react';
 import Layout from '../Components/Layout';
 import { Store } from '../utils/Store';
 import { XCircleIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router';
 
 const CartScreen = () => {
+    const router = useRouter();
 
     const { state, dispatch } = useContext(Store);
     const {
         cart: { cartItems },
     } = state;
-const removeItemHandler=(item)=>{
-    dispatch({type: 'CART_REMOVE_ITEM', payload: item})
-}
+    const removeItemHandler = (item) => {
+        dispatch({ type: 'CART_REMOVE_ITEM', payload: item })
+    }
     return (
         <Layout title='Shopping Cart'>
             <h1 className="mb-4 text-xl">Shopping Cart</h1>
@@ -48,7 +50,7 @@ const removeItemHandler=(item)=>{
                                                 <td className="p-5 text-right">{item.quantity}</td>
                                                 <td className="p-5 text-right">$ {item.price}</td>
                                                 <td className="p-5 text-center">
-                                                    <button onClick={()=> removeItemHandler(item)}>
+                                                    <button onClick={() => removeItemHandler(item)}>
                                                         <XCircleIcon className='h-8 w-8'></XCircleIcon>
                                                     </button>
                                                 </td>
@@ -56,6 +58,21 @@ const removeItemHandler=(item)=>{
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+                            <div className="card p-5">
+                                <ul>
+                                    <li>
+                                        <div className="pb-3 text-xl">
+                                            Subtotal ( {cartItems.reduce((a, c) => a + c.quantity, 0)} )
+                                            {' '}
+                                            : $
+                                            {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <button onClick={()=> router.push('/shopping')} className="primary-button w-full">Check Out</button>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     )
