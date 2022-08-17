@@ -1,5 +1,4 @@
 ## Mobile Shop
-
 #### Live Project Link:
 
 - This project / website is about an Online Mobile selling website ( Mobile Shop ).

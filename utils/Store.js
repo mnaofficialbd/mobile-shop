@@ -20,12 +20,14 @@ function reducer(state, action) {
                 (item) => item.phone_name === existItem.phone_name ? newItem : item
             )
                 : [...state.cart.cartItems, newItem];
+                Cookies.set('cart',JSON.stringify({ ...state.cart, cartItems }))
             return { ...state, cart: { ...state.cart, cartItems } }
         }
         case 'CART_REMOVE_ITEM': {
             const cartItems = state.cart.cartItems.filter(
                 (item) => item.slug !== action.payload.slug
             );
+            Cookies.set('cart',JSON.stringify({ ...state.cart, cartItems }))
             return { ...state, cart: { ...state.cart, cartItems } }
         }
         default:
