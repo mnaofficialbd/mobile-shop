@@ -78,6 +78,7 @@ const ProductScreen = () => {
                         <button className="primary-button w-full" onClick={addToCartHandler}>Add to cart</button>
                     </div>
                 </div>
+                
             </div>
         </Layout>
     );
