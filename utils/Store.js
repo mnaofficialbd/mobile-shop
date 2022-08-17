@@ -1,9 +1,13 @@
 import { createContext, useReducer } from "react";
+import Cookies from 'js-cookie';
+
 
 export const Store = createContext();
 const initialState = {
-    cart: { cartItems: [] }
+    cart: Cookies.get('cart') ? JSON.parse(cookies.get('cart')) :
+        { cartItems: [] }
 }
+
 
 function reducer(state, action) {
     switch (action.type) {
@@ -31,6 +35,6 @@ function reducer(state, action) {
 
 export function StoreProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const value ={state, dispatch};
+    const value = { state, dispatch };
     return <Store.Provider value={value}>{children}</Store.Provider>
 }
