@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 export const Store = createContext();
 const initialState = {
-    cart: Cookies.get('cart') ? JSON.parse(cookies.get('cart')) :
+    cart: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) :
         { cartItems: [] }
 }
 
